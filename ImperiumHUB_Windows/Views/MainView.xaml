@@ -1,0 +1,101 @@
+<UserControl x:Class="ImperiumGearHUB.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ImperiumGearHUB.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1000">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Üst Panel -->
+        <Grid Grid.Row="0" Background="{StaticResource SurfaceBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Logo ve Başlık -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0,0,0">
+                <Image Source="/Resources/logo.png" Width="32" Height="32" Margin="0,0,10,0"/>
+                <TextBlock Text="Imperium Gear HUB" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
+            </StackPanel>
+            
+            <!-- Cihaz Seçimi -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0">
+                <TextBlock Text="Cihaz:" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <ComboBox Width="250" ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" DisplayMemberPath="Name" Margin="0,0,10,0"/>
+                <Button Content="Yenile" Command="{Binding RefreshDevicesCommand}" Width="80" Margin="0,0,10,0"/>
+                <Button Content="Bağlan" Command="{Binding ConnectDeviceCommand}" Width="80" Margin="0,0,10,0"/>
+                <Button Content="Bağlantıyı Kes" Command="{Binding DisconnectDeviceCommand}" Width="100"/>
+            </StackPanel>
+            
+            <!-- Ayarlar Butonu -->
+            <Button Grid.Column="2" Content="Ayarlar" Width="80" Margin="0,0,15,0"/>
+        </Grid>
+        
+        <!-- Ana İçerik -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Sol Menü -->
+            <Grid Grid.Column="0" Background="{StaticResource SurfaceBrush}">
+                <StackPanel Margin="0,20,0,0">
+                    <TextBlock Text="PROFİLLER" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" Margin="15,0,0,10"/>
+                    <ListView ItemsSource="{Binding Profiles}" BorderThickness="0" Background="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Image Source="/Resources/profile.png" Width="16" Height="16" Margin="0,0,10,0"/>
+                                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource TextPrimaryBrush}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                    <TextBlock Text="ARAÇLAR" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12" Margin="15,20,0,10"/>
+                    <StackPanel Margin="15,0,0,0">
+                        <Button Content="Firmware Güncelleme" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                        <Button Content="Cihaz Bilgileri" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                        <Button Content="Fabrika Ayarları" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            
+            <!-- Sağ İçerik -->
+            <Grid Grid.Column="1" Background="{StaticResource BackgroundBrush}">
+                <ContentControl Content="{Binding CurrentView}"/>
+                
+                <!-- Yükleniyor Göstergesi -->
+                <Grid Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Rectangle Fill="#80000000"/>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <ProgressBar IsIndeterminate="True" Width="200" Height="10" Margin="0,0,0,10"/>
+                        <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <!-- Alt Bilgi Çubuğu -->
+        <Grid Grid.Row="2" Background="{StaticResource SurfaceBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" Text="{Binding StatusMessage}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" Margin="15,0,0,0"/>
+            <TextBlock Grid.Column="1" Text="{Binding AppVersion}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" Margin="0,0,15,0"/>
+        </Grid>
+    </Grid>
+</UserControl>

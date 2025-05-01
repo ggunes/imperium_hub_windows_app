@@ -1,0 +1,9 @@
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\ImperiumGearHUB.csproj.AssemblyReference.cache
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\MainWindow.g.cs
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\Views\KeyboardView.g.cs
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\Views\MainView.g.cs
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\Views\MainWindow.g.cs
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\App.g.cs
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\ImperiumGearHUB_MarkupCompile.cache
+C:\Users\gurka\Desktop\ImperiumHUB_Windows\obj\Debug\net9.0-windows\ImperiumGearHUB_MarkupCompile.lref
